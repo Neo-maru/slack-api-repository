@@ -1,16 +1,16 @@
 <?php
 
-$data = file_get_contents('php://input');
-$data = json_decode($data, true);
+$data = file_get_contents('php://input');　//外部からのアクセスを受けて起動。クライアントから投げられたものを受け取る
+$data = json_decode($data, true); //JSON形式なのでphpにデコード
 
-if ($data['type']=='url_verification') {
-    echo json_encode($data["challenge"]);
-} else if ($data['type']=='event_callback') {
+if ($data['type']=='url_verification') {　　//slackが定めているもの。チャレンジ認証。
+    echo json_encode($data["challenge"]);　//phpだとこのやり取りだけで簡単に認証できる。コピペ推奨
+} else if ($data['type']=='event_callback') {　//ここからイベント処理
     // error_log(print_r($data, true));
-    $event = $data["event"];
+    $event = $data["event"];  //イベントの内容を入れている
     // error_log(print_r($event, true));
 
-    if ($event["type"]=="app_mention") {
+    if ($event["type"]=="app_mention") {  //イベントがapp_mention（スラックのEvent Scription参考）なら…以下を実装。アクションが複数ある場合はifで分岐させる。
         error_log("app_mentioned");
         $message = 
         [
