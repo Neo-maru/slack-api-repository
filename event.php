@@ -14,12 +14,12 @@ if ($data['type']=='url_verification') {　　//slackが定めているもの。
         error_log("app_mentioned");
         $message = 
         [
-            'attachments' => 
+            'attachments' =>  //attachmentの配列の中に別の配列
             [
                 [
                     "text" => "以下の選択肢から要件を選んでください。",
-                    "callback_id" => "select_menu",
-                    "color" => "#3AA3E3",
+                    "callback_id" => "select_menu", //インタラクションでif分岐させるときに特に必要になる
+                    "color" => "#3AA3E3",　//attachmentの縦棒の色
                     "attachment_type" => "default",
                     "actions" => [
                         [
