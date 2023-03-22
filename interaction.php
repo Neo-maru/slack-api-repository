@@ -21,7 +21,7 @@ if ($payload["callback_id"]=="select_menu") {
 
     if ($selected_option == "wpHomepageLink") {
         $original_message["attachments"][0]["text"] = "要件: WPについて知りたい。";
-        $original_message["attachments"][0]["actions"] = null;
+        $original_message["attachments"][0]["actions"] = null;　//いらないものはnullにしていく
         $adding_message = [
             "color" => "3AA3E3",
             "fallback" => "homepage link",
@@ -32,7 +32,7 @@ if ($payload["callback_id"]=="select_menu") {
         $ch = curl_init($response_url);
         curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($original_message));
         curl_setopt( $ch, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // falseにすると、curlの結果が送ったメッセージに上書きされてしまう。
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // falseにすると、curlの結果が送ったメッセージに上書きされてしまう。インタラクション内では必ずtrue
         curl_exec($ch);
         curl_close($ch);
     } else if ($selected_option == "wpManageSystem") {
