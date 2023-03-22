@@ -47,7 +47,7 @@ if ($data['type']=='url_verification') {　　//slackが定めているもの。
             ]
         ];
     
-        $ch = curl_init("https://hooks.slack.com/services/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");
+        $ch = curl_init("https://hooks.slack.com/services/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"); //webhookへ返して表示させる
         curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($message));
         curl_setopt( $ch, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, false );
